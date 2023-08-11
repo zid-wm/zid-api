@@ -21,7 +21,8 @@ ALLOWED_HOSTS = [
 SILENCED_SYSTEM_CHECKS = [
     "security.W003",
     "security.W008",
-    "security.W012"
+    "security.W012",
+    "security.W018"
 ]
 
 

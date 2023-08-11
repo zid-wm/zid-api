@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ENVIRONMENT: prod
+      ENVIRONMENT: github
       USE_SQLITE: True
 
     steps:
@@ -37,7 +37,7 @@ jobs:
       - check_deploy
 
     env:
-      ENVIRONMENT: prod
+      ENVIRONMENT: github
       USE_SQLITE: True
 
     steps:
@@ -66,7 +66,7 @@ jobs:
       - pylint
 
     env:
-      ENVIRONMENT: prod
+      ENVIRONMENT: github
       USE_SQLITE: True
 
     steps:

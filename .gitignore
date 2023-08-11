@@ -166,3 +166,4 @@ cython_debug/
 
 # Project-specific files
 *-properties.yml
+!github-properties.yml
