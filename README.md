@@ -4,6 +4,10 @@
 
 The vZID ARTCC API is meant to serve as a backend system to service the vZID website, Discord server, training system, and more. The backend is written primarily in Python using the Django framework.
 
+## Documentation
+
+Documentation for all vZID API endpoints can be found [here](https://zid-wm.github.io/zid-api/).
+
 ## Local Development
 
 ### Prerequisites
