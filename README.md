@@ -105,13 +105,13 @@ pipenv run lint
 
 ### Updating the API documentation
 
-API documentation is located in the `doc/` folder, and configuration settings are located in `apidoc.json`. Any 
+API documentation is located in the `docs/` folder, and configuration settings are located in `apidoc.json`. Any 
 changes to API signatures should be reflected in the docstring immediately preceding the method. Once the updates have 
 been made, run the following commands from the project's root directory to update the documentation:
 
 ```shell
 npm install apidoc -g
-apidoc -i v1 -o doc
+apidoc -i v1 -o docs
 ```
 
 apiDoc is an automatic documentation generator based on the docstrings in the code. For a full list of all available
