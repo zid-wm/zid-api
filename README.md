@@ -1,4 +1,4 @@
-#vZID ARTCC API
+# vZID ARTCC API
 
 ## Introduction
 
@@ -86,7 +86,7 @@ select a port, run `pipenv run server ####`, where `####` is the port.
 
 ### Testing
 
-The vZID API uses PyTest for unit testing. Code coverage is enforced and all pull requests to `master` must have a 
+The vZID API uses PyTest for unit testing. Code coverage is enforced and all pull requests to `main` must have a 
 minimum of 80% coverage (as well as 100% of tests passing).
 
 To run all unit tests, use the following command:
@@ -94,7 +94,7 @@ To run all unit tests, use the following command:
 pipenv run test
 ```
 
-PyLint is used to lint files and enforce code quality. All pull requests to `master` must have a minimum PyLint 
+PyLint is used to lint files and enforce code quality. All pull requests to `main` must have a minimum PyLint 
 score of 8.0. To run PyLint, use the following command:
 ```shell
 pipenv run lint
@@ -103,9 +103,9 @@ pipenv run lint
 ## Contributing
 
 Contributions are always welcome and encouraged. Changes should be made on a personal fork of the repository, and
-a pull request to `master` should be opened.
+a pull request to `main` should be opened.
 
-Certain checks are run on all pull requests to the `master` branch. All pull requests must meet the following 
+Certain checks are run on all pull requests to the `main` branch. All pull requests must meet the following 
 requirements:
 
 - No merge conflicts
