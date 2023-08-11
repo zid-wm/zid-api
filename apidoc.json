@@ -1,0 +1,14 @@
+{
+  "name": "vZID ARTCC API",
+  "version": "0.1.0",
+  "description": "Documentation for the vZID API. Supports the vZID website, Discord server, and more.",
+  "title": "vZID ARTCC API",
+  "url": "api.zidartcc.org/v1",
+  "order": [
+    "Admin"
+  ],
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  }
+}
