@@ -1,0 +1,10 @@
+zid:
+  github:
+    website_domain: github.org
+    secret_key: "abc123abc123abc123abc123abc123abc123abc123abc123abc123abc123"
+
+    vatusa:
+      url: "https://api.vatusa.net/v2"
+      key: "abc123"
+
+    controlled_fields: "['CVG', 'CMH', 'CRW', 'DAY', 'EVV', 'IND', 'LEX', 'SDF', 'AID', 'BAK', 'BMG', 'FFO', 'FTK', 'HTS', 'HUF', 'ILN', 'LCK', 'LOU', 'LUK', 'MIE', 'OSU', 'OWB', 'PKB', 'TZR']"

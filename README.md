@@ -68,6 +68,9 @@ zid:
     controlled_fields: "['ABC', 'DEF', 'GHI']"
 ```
 
+There is a file named `github-properties.yml` which is committed to source control. This is used for pull request 
+checks and should not be modified or deleted unless an additional parameter is required to test.
+
 #### Starting the Server
 Install all required python packages. If you're using Pyenv, this command will automatically install and select 
 Python 3.11.4 as the version.
