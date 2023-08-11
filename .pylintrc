@@ -1,0 +1,9 @@
+[MASTER]
+ignore=migrations
+fail-under=8.0
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
