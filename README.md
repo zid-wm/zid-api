@@ -103,6 +103,23 @@ score of 8.0. To run PyLint, use the following command:
 pipenv run lint
 ```
 
+### Updating the API documentation
+
+API documentation is located in the `doc/` folder, and configuration settings are located in `apidoc.json`. Any 
+changes to API signatures should be reflected in the docstring immediately preceding the method. Once the updates have 
+been made, run the following commands from the project's root directory to update the documentation:
+
+```shell
+npm install apidoc -g
+apidoc -i v1 -o doc
+```
+
+apiDoc is an automatic documentation generator based on the docstrings in the code. For a full list of all available
+parameters, visit the [apiDoc website](https://apidocjs.com/).
+
+*Note: NPM is required to use apidoc. Follow the instructions [here](https://github.com/nvm-sh/nvm) if you need to 
+install it.*
+
 ## Contributing
 
 Contributions are always welcome and encouraged. Changes should be made on a personal fork of the repository, and
