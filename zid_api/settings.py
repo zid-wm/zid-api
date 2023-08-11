@@ -8,12 +8,21 @@ from util import secrets
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-42u!*sd!jy5j^d1-xdh*4qq9_@b@hyav2jt2@b(zb64=pzes2p'
+SECRET_KEY = secrets.get_secret('secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('ENVIRONMENT', 'prod') != 'prod'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    secrets.get_secret('website_domain'),
+    f'*.{secrets.get_secret("website_domain")}'
+]
+
+SILENCED_SYSTEM_CHECKS = [
+    "security.W003",
+    "security.W008",
+    "security.W012"
+]
 
 
 # Application definition
@@ -56,6 +65,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'zid_api.wsgi.application'
+
+SECURE_HSTS_SECONDS = 60
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 
 # Database

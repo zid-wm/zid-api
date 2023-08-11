@@ -1,0 +1,88 @@
+name: Build App
+
+on:
+  pull_request:
+
+jobs:
+  check_deploy:
+    name: Check Django deployment settings
+    runs-on: ubuntu-latest
+
+    env:
+      ENVIRONMENT: prod
+      USE_SQLITE: True
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11.4"
+
+      - name: Activate Virtual Environment
+        run: |
+          pip install pipenv
+          pipenv install --dev
+
+      - name: Check Django Security Settings
+        run: |
+          pipenv run python manage.py check --deploy --fail-level WARNING
+
+  pylint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+    needs:
+      - check_deploy
+
+    env:
+      ENVIRONMENT: prod
+      USE_SQLITE: True
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11.4"
+
+      - name: Activate Virtual Environment
+        run: |
+          pip install pipenv
+          pipenv install --dev
+
+      - name: Run PyLint
+        run: |
+          pipenv run lint
+
+  pytest:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+    needs:
+      - check_deploy
+      - pylint
+
+    env:
+      ENVIRONMENT: prod
+      USE_SQLITE: True
+
+    steps:
+      - name: Checkout Code
+          uses: actions/checkout@v2
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11.4"
+
+      - name: Activate Virtual Environment
+        run: |
+          pip install pipenv
+          pipenv install --dev
+
+      - name: Run Unit Tests
+        run: |
+          pipenv run test
