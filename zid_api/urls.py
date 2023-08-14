@@ -16,9 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic import TemplateView
+from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
+    path('', TemplateView.as_view(
+        template_name='swagger-ui.html',
+        extra_context={
+            'schema_url': 'openapi'
+        }
+    )),
     path('admin', admin.site.urls),
+    path('openapi', get_schema_view(
+        title='vZID ARTCC API',
+        description='Backend API for vZID ARTCC technology services',
+        version='0.1.0'
+    ), name='openapi'),
     path('v1/', include([
         path('admin/', include('v1.administration.urls')),
         # path('event/', include('v1.event.urls')),

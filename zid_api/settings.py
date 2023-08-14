@@ -35,7 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'v1.administration'
+    'v1.administration',
+    'rest_framework',
+    'rest_framework_api_key',
+    'rest_framework_swagger'
 ]
 
 MIDDLEWARE = [
@@ -52,7 +55,7 @@ ROOT_URLCONF = 'zid_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -93,6 +96,11 @@ else:
             'PORT': secrets.get_secret('db/port')
         }
     }
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'
+}
 
 
 # Password validation
