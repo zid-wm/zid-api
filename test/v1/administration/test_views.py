@@ -3,11 +3,16 @@ import pytest
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from rest_framework_api_key.models import APIKey
 
 from v1.administration import models
 
 
 class TestActionLogViews(APITestCase):
+    def setUp(self):
+        _, api_key = APIKey.objects.create_key(name='test')
+        self.authorization = f'Api-Key {api_key}'
+
     @pytest.mark.django_db
     def test_action_log_get(self):
         models.ActionLog(action='Test Action 1').save()
@@ -15,7 +20,10 @@ class TestActionLogViews(APITestCase):
         models.ActionLog(action='Test Action 3').save()
 
         url = reverse('action-log')
-        response = self.client.get(url)
+        response = self.client.get(
+            url,
+            HTTP_AUTHORIZATION=self.authorization
+        )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         content = response.json()
@@ -28,7 +36,11 @@ class TestActionLogViews(APITestCase):
         data = {
             'action': 'Test Action'
         }
-        response = self.client.post(url, data)
+        response = self.client.post(
+            url,
+            data,
+            HTTP_AUTHORIZATION=self.authorization
+        )
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         content = response.json()
@@ -38,6 +50,10 @@ class TestActionLogViews(APITestCase):
 
 
 class TestMAVPViews(APITestCase):
+    def setUp(self):
+        _, api_key = APIKey.objects.create_key(name='test')
+        self.authorization = f'Api-Key {api_key}'
+
     @pytest.mark.django_db
     def test_mavp_get(self):
         models.MAVP(
@@ -64,7 +80,11 @@ class TestMAVPViews(APITestCase):
             'facility_short': 'ZAB',
             'facility_long': 'Academy ARTCC'
         }
-        response = self.client.post(url, data)
+        response = self.client.post(
+            url,
+            data,
+            HTTP_AUTHORIZATION=self.authorization
+        )
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         content = response.json()
@@ -83,7 +103,11 @@ class TestMAVPViews(APITestCase):
             'facility_short': 'ZAB',
             'facility_long': 'Academy ARTCC'
         }
-        response = self.client.post(url, data)
+        response = self.client.post(
+            url,
+            data,
+            HTTP_AUTHORIZATION=self.authorization
+        )
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         content = response.json()
@@ -102,7 +126,10 @@ class TestMAVPViews(APITestCase):
         url = reverse('mavp-delete', kwargs={
             'pk': 'ZAB'
         })
-        response = self.client.delete(url)
+        response = self.client.delete(
+            url,
+            HTTP_AUTHORIZATION=self.authorization
+        )
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         queryset = models.MAVP.objects.all()
@@ -113,7 +140,10 @@ class TestMAVPViews(APITestCase):
         url = reverse('mavp-delete', kwargs={
             'pk': 'ZAB'
         })
-        response = self.client.delete(url)
+        response = self.client.delete(
+            url,
+            HTTP_AUTHORIZATION=self.authorization
+        )
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         content = response.json()
